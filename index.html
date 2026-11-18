@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دفتر فنی مهندسی آذر استیل | ۱۵ سال تجربه، ۵۰۰+ پروژه موفق</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0A192F;
+            --blue: #1A3A6B;
+            --orange: #E67E22;
+            --gold: #F39C12;
+            --light: #F8FAFC;
+            --white: #FFFFFF;
+            --gray: #64748B;
+            --shadow: 0 10px 30px rgba(10, 25, 47, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'B Nazanin', 'Vazirmatn', Tahoma, sans-serif;
+            background-color: var(--light);
+            color: var(--navy);
+            line-height: 1.8;
+            overflow-x: hidden;
+            font-size: 18px;
+        }
+
+        h1, h2, h3, h4, .stat-number { font-family: 'B Titr', 'Titr', 'Vazirmatn', Tahoma, sans-serif; }
+
+        /* --- HEADER --- */
+        header {
+            background: rgba(10, 25, 47, 0.98);
+            position: sticky; top: 0; z-index: 1000;
+            padding: 0.5rem 5%; 
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; /* راست، وسط، چپ */
+            align-items: center;
+            border-bottom: 3px solid var(--orange);
+        }
+
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* در RTL یعنی سمت راست */
+        }
+
+        .logo-img {
+            height: 75px; width: auto; border-radius: 50%;
+            box-shadow: 0 0 15px rgba(230, 126, 34, 0.3); transition: transform 0.3s; cursor: pointer;
+        }
+        .logo-img:hover { transform: scale(1.05); }
+
+        #live-datetime {
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 5px;
+            direction: ltr;
+        }
+
+        .header-center {
+            text-align: center;
+        }
+
+        .phone-link {
+            color: var(--white); text-decoration: none; font-weight: 700; font-size: 1.2rem;
+            background: linear-gradient(135deg, var(--orange), var(--gold));
+            padding: 0.6rem 1.5rem; border-radius: 50px; transition: transform 0.3s;
+            display: inline-block;
+        }
+        .phone-link:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4); }
+
+        .header-left {
+            display: flex;
+            justify-content: flex-end; /* در RTL یعنی سمت چپ */
+            align-items: center;
+        }
+
+        .small-square-logo {
+            width: 65px;
+            height: 65px;
+            object-fit: cover; /* برای اینکه عکس دقیقاً مربع شود */
+            border-radius: 10px;
+            border: 2px solid var(--orange);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        .small-square-logo:hover { transform: scale(1.05); }
+
+
+        /* --- دکمه شناور بازگشت --- */
+        #floating-back-btn {
+            display: none; position: fixed; bottom: 30px; left: 30px;
+            background: linear-gradient(135deg, var(--orange), var(--gold));
+            color: white; padding: 1rem 2rem; border-radius: 50px;
+            font-size: 1.2rem; font-weight: bold; box-shadow: 0 5px 20px rgba(230, 126, 34, 0.5);
+            cursor: pointer; z-index: 9999; border: none; font-family: 'B Titr', sans-serif;
+            transition: transform 0.3s;
+        }
+        #floating-back-btn:hover { transform: scale(1.1); }
+
+        /* --- HOME PAGE (HERO & PRODUCTS) --- */
+        #home-view { display: block; }
+        
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(26, 58, 107, 0.85) 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><rect width="1920" height="1080" fill="%231A3A6B"/><path d="M0 1080 L1920 1080 L1920 800 L0 950 Z" fill="%230A192F" opacity="0.5"/><circle cx="1500" cy="200" r="300" fill="%23E67E22" opacity="0.1"/><circle cx="400" cy="800" r="200" fill="%23F39C12" opacity="0.1"/></svg>') center/cover;
+            color: var(--white); padding: 6rem 5% 5rem; text-align: center;
+            min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+
+        .hero h1 { font-size: 4rem; font-weight: 900; margin-bottom: 1.5rem; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .hero h1 span { color: var(--orange); }
+        .hero p { font-size: 1.5rem; max-width: 800px; margin-bottom: 3rem; opacity: 0.9; }
+
+        .stats-bar {
+            display: flex; justify-content: center; gap: 4rem;
+            background: rgba(255, 255, 255, 0.05); padding: 2rem 4rem;
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number { font-size: 3rem; color: var(--orange); display: block; }
+        .stat-label { font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); }
+
+        .products { padding: 6rem 5%; max-width: 1300px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 3rem; color: var(--blue); position: relative; display: inline-block; padding-bottom: 1rem; }
+        .section-header h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 4px; background: linear-gradient(90deg, var(--orange), var(--gold)); border-radius: 2px;
+        }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; }
+
+        .card {
+            background: var(--white); border-radius: 20px; overflow: hidden;
+            box-shadow: var(--shadow); transition: all 0.4s ease; border: 1px solid #E2E8F0; cursor: pointer;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(10, 25, 47, 0.15); border-color: var(--orange); }
+
+        .card-img-wrapper { position: relative; height: 240px; overflow: hidden; background: #eaeaea; display: flex; align-items: center; justify-content: center; }
+        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .card:hover .card-img-wrapper img { transform: scale(1.05); }
+        
+        .card-badge {
+            position: absolute; top: 15px; right: 15px; background: linear-gradient(135deg, var(--orange), var(--gold));
+            color: var(--white); padding: 0.4rem 1rem; border-radius: 50px; font-weight: 700;
+        }
+
+        .card-content { padding: 2rem; }
+        .card-content h3 { font-size: 1.8rem; margin-bottom: 0.8rem; }
+        .card-content p { color: var(--gray); font-size: 1.1rem; margin-bottom: 1.8rem; }
+        
+        .btn-details {
+            display: block; text-align: center; width: 100%; background: transparent;
+            color: var(--blue); border: 2px solid var(--blue); padding: 0.8rem;
+            border-radius: 12px; font-weight: 700; transition: all 0.3s; font-size: 1.2rem;
+            font-family: 'B Titr', 'Vazirmatn', sans-serif;
+        }
+        .card:hover .btn-details { background: var(--blue); color: var(--white); }
+
+        /* --- PRODUCT PAGE --- */
+        #product-view { display: none; padding: 3rem 5%; max-width: 1100px; margin: 0 auto; }
+        
+        .top-back-link {
+            display: inline-block; color: var(--blue); text-decoration: none; margin-bottom: 2rem;
+            font-weight: 700; padding: 0.5rem 1rem; background: var(--white);
+            border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer;
+            font-family: 'B Titr', 'Vazirmatn', sans-serif;
+        }
+        .top-back-link:hover { color: var(--orange); }
+
+        .product-header { text-align: center; margin-bottom: 3rem; }
+        .product-title { font-size: 3rem; color: var(--blue); margin-bottom: 1rem; }
+        .title-line { width: 100px; height: 5px; background: linear-gradient(90deg, var(--orange), var(--gold)); margin: 0 auto; border-radius: 3px; }
+
+        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+        .gallery-item { width: 100%; height: 280px; border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; background: #eaeaea; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+        .description-box {
+            background: var(--white); padding: 3rem; border-radius: 20px;
+            box-shadow: var(--shadow); border-right: 6px solid var(--orange); margin-bottom: 3rem;
+        }
+        .description-box p { font-size: 1.3rem; color: var(--gray); text-align: justify; margin-bottom: 1.5rem; line-height: 2.2; }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--navy), var(--blue)); color: var(--white);
+            text-align: center; padding: 3rem; border-radius: 20px; box-shadow: 0 15px 30px rgba(10, 25, 47, 0.2);
+        }
+        .cta-box h3 { font-size: 2rem; margin-bottom: 1rem; }
+        .cta-phone {
+            display: inline-block; background: var(--orange); color: var(--white);
+            padding: 1rem 3rem; border-radius: 50px; text-decoration: none;
+            font-weight: 900; font-size: 1.5rem; margin-top: 1rem; transition: transform 0.3s;
+            font-family: 'B Nazanin', 'Vazirmatn', sans-serif;
+        }
+        .cta-phone:hover { transform: scale(1.05); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--navy); color: var(--white); padding: 4rem 5% 2rem;
+            text-align: center; border-top: 5px solid var(--orange);
+        }
+        .footer-content { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; max-width: 1200px; margin: 0 auto 3rem; text-align: right; }
+        .footer-item h4 { color: var(--orange); font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+        .footer-item p, .footer-item a { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 1.1rem; transition: color 0.3s; }
+        .footer-item a:hover { color: var(--orange); }
+        
+        /* لینک نقشه */
+        .map-link {
+            display: inline-block;
+            margin-top: 10px;
+            background: rgba(230, 126, 34, 0.2);
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--orange);
+            color: var(--gold) !important;
+            font-weight: bold;
+        }
+        .map-link:hover { background: var(--orange); color: var(--white) !important; }
+
+        /* لیست مهندسین */
+        .engineers-list { margin-top: 15px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; border-right: 3px solid var(--gold); }
+        .engineers-list p { margin-bottom: 8px; font-size: 1.1rem; display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 5px; }
+        .engineers-list p:last-child { border-bottom: none; margin-bottom: 0; }
+
+        .copyright { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1.5rem; font-size: 1rem; color: rgba(255, 255, 255, 0.5); }
+
+        @media (max-width: 768px) {
+            header { grid-template-columns: 1fr; gap: 15px; text-align: center; padding: 1rem 5%; }
+            .header-right { align-items: center; }
+            .header-left { justify-content: center; }
+            .hero h1 { font-size: 2.5rem; } .stats-bar { flex-direction: column; gap: 1.5rem; padding: 1.5rem; }
+            .grid { grid-template-columns: 1fr; } 
+            .gallery { grid-template-columns: 1fr; } .product-title { font-size: 2rem; }
+            .description-box { padding: 1.5rem; } .description-box p { font-size: 1.15rem; }
+            #floating-back-btn { bottom: 15px; left: 15px; padding: 0.8rem 1.5rem; font-size: 1rem; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .engineers-list p { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- سمت راست: لوگوی اصلی + تاریخ و ساعت -->
+        <div class="header-right">
+            <img src="logo.jpg" alt="آذر استیل" class="logo-img" onclick="showHome()">
+            <div id="live-datetime">در حال بارگذاری...</div>
+        </div>
+
+        <!-- وسط: تلفن تماس -->
+        <div class="header-center">
+            <a href="tel:+982537200700" class="phone-link">۰۲۵-۳۷۲۰۰۷۰۰</a>
+        </div>
+
+        <!-- سمت چپ: لوگوی کوچک مربعی -->
+        <div class="header-left">
+            <img src="logo.jpg1" alt="لوگو کوچک" class="small-square-logo">
+        </div>
+    </header>
+
+    <!-- دکمه شناور بازگشت (فقط در صفحه محصول) -->
+    <button id="floating-back-btn" onclick="showHome()">← بازگشت</button>
+
+    <!-- صفحه اول: خانه -->
+    <div id="home-view">
+        <section class="hero">
+            <h1>مهندسی دقیق، <span>اجرای لوکس</span></h1>
+            <p>دفتر فنی مهندسی آذر استیل با ۱۵ سال تجربه درخشان و بیش از ۵۰۰ فروش و نصب موفق، پیشرو در طراحی و اجرای سازه‌های فلزی و مدرن</p>
+            <div class="stats-bar">
+                <div class="stat-item"><span class="stat-number">+۱۵</span><span class="stat-label">سال تجربه</span></div>
+                <div class="stat-item"><span class="stat-number">+۵۰۰</span><span class="stat-label">پروژه موفق</span></div>
+                <div class="stat-item"><span class="stat-number">٪۱۰۰</span><span class="stat-label">رضایت مشتری</span></div>
+            </div>
+        </section>
+
+        <section class="products">
+            <div class="section-header"><h2>محصولات و خدمات ما</h2></div>
+            <div class="grid">
+                <!-- ۱: نرده استیل -->
+                <div class="card" onclick="openProduct(1)">
+                    <div class="card-img-wrapper">
+                        <img src="images1" alt="نرده استیل">
+                        <span class="card-badge">پرفروش</span>
+                    </div>
+                    <div class="card-content"><h3>نرده استیل مهندسی</h3><p>طراحی و اجرای نرده‌های استیل ضد زنگ (گرید 304 و 201) با بالاترین کیفیت و دقت مهندسی.</p><div class="btn-details">مشاهده جزئیات</div></div>
+                </div>
+                
+                <!-- ۲: نرده استاتیک -->
+                <div class="card" onclick="openProduct(2)">
+                    <div class="card-img-wrapper">
+                        <img src="N1" alt="نرده استاتیک">
+                    </div>
+                    <div class="card-content"><h3>نرده استاتیک مهندسی</h3><p>اجرای نرده‌های استاتیک (ثابت) با استیل 304 و 201، طراحی زیبا و مقاومت فیزیکی بالا.</p><div class="btn-details">مشاهده جزئیات</div></div>
+                </div>
+
+                <!-- ۳: کرکره برقی -->
+                <div class="card" onclick="openProduct(3)">
+                    <div class="card-img-wrapper">
+                        <img src="K1" alt="کرکره برقی">
+                    </div>
+                    <div class="card-content"><h3>کرکره برقی</h3><p>نصب و راه‌اندازی انواع کرکره‌های برقی صنعتی و تجاری با موتورهای قدرتمند و ایمن.</p><div class="btn-details">مشاهده جزئیات</div></div>
+                </div>
+
+                <!-- ۴: شیشه سکوریت -->
+                <div class="card" onclick="openProduct(4)">
+                    <div class="card-img-wrapper">
+                        <img src="Sh1" alt="شیشه سکوریت">
+                    </div>
+                    <div class="card-content"><h3>شیشه سکوریت</h3><p>تامین و نصب شیشه‌های سکوریت برای بالکن‌ها، نماها و پارتیشن‌های اداری با ضمانت ایمنی.</p><div class="btn-details">مشاهده جزئیات</div></div>
+                </div>
+
+                <!-- ۵: درب و پنجره UPVC -->
+                <div class="card" onclick="openProduct(5)">
+                    <div class="card-img-wrapper">
+                        <img src="D1" alt="پنجره یو پی وی سی">
+                    </div>
+                    <div class="card-content"><h3>درب و پنجره UPVC</h3><p>عایق‌بندی حرارتی و صوتی عالی با استفاده از پروفیل‌های UPVC درجه یک و شیشه‌های دوجداره.</p><div class="btn-details">مشاهده جزئیات</div></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- صفحه دوم: جزئیات محصول -->
+    <div id="product-view">
+        <span class="top-back-link" onclick="showHome()">← بازگشت به صفحه اصلی</span>
+        
+        <div class="product-header">
+            <h1 class="product-title" id="p-title">...</h1>
+            <div class="title-line"></div>
+        </div>
+        <div class="gallery" id="p-gallery"></div>
+        <div class="description-box" id="p-desc"></div>
+        
+        <div class="cta-box">
+            <h3>برای مشاوره و سفارش این محصول با ما تماس بگیرید</h3>
+            <p style="opacity: 0.8; font-size: 1.2rem;">کارشناسان آذر استیل آماده پاسخگویی به شما هستند.</p>
+            <a href="tel:+982537200700" class="cta-phone">۰۲۵-۳۷۲۰۰۷۰۰</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <!-- ستون سمت راست: آدرس و نقشه -->
+            <div class="footer-item">
+                <h4>آدرس دفتر مرکزی</h4>
+                <p>قم، خیابان آذر، بین کوچه ۵۶ و ۵۸</p>
+                <a href="https://maps.app.goo.gl/9o6SkN6n985oFJyR8" target="_blank" class="map-link">
+                    📍 مشاهده روی نقشه گوگل
+                </a>
+            </div>
+            
+            <!-- ستون وسط: راه‌های ارتباطی -->
+            <div class="footer-item">
+                <h4>راه‌های ارتباطی</h4>
+                <p>تلفن دفتر: <a href="tel:+982537200700">۰۲۵-۳۷۲۰۰۷۰۰</a></p>
+                
+                <div class="engineers-list">
+                    <p><strong>مهندس هاشم‌پور:</strong> <a href="tel:09128545508">۰۹۱۲۸۵۴۵۵۰۸</a></p>
+                    <p><strong>مهندس رحیمی:</strong> <a href="tel:09120514036">۰۹۱۲۰۵۱۴۰۳۶</a></p>
+                    <p><strong>مهندس خوش بیان:</strong> <a href="tel:09372569086">۰۹۳۷۲۵۶۹۰۸۶</a></p>
+                </div>
+            </div>
+            
+            <!-- ستون سمت چپ: ساعات کاری -->
+            <div class="footer-item">
+                <h4>ساعات کاری</h4>
+                <p>شنبه تا پنجشنبه</p>
+                <p>۹ صبح تا ۶ عصر</p>
+            </div>
+        </div>
+        <div class="copyright">© ۱۴۰۴ دفتر فنی مهندسی آذر استیل. کلیه حقوق محفوظ است.</div>
+    </footer>
+
+    <script>
+        // --- اسکریپت تاریخ و ساعت زنده شمسی (به وقت تهران) ---
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                timeZone: 'Asia/Tehran',
+                year: 'numeric', month: 'long', day: 'numeric',
+                weekday: 'long', hour: '2-digit', minute: '2-digit', second: '2-digit'
+            };
+            // فرمت‌بندی به فارسی و تقویم شمسی
+            const formatter = new Intl.DateTimeFormat('fa-IR', options);
+            document.getElementById('live-datetime').innerText = formatter.format(now);
+        }
+        setInterval(updateDateTime, 1000); // آپدیت هر ثانیه
+        updateDateTime(); // اجرای اولیه
+
+        // --- دیتای محصولات (تصاویر اختصاصی شما) ---
+        const productsData = {
+            "1": { 
+                title: "نرده استیل مهندسی", 
+                images: ["images2", "images3", "images4"], 
+                description: `
+                    <p>نرده‌های استیل مهندسی یکی از پرکاربردترین و محبوب‌ترین المان‌های معماری مدرن و ساختمان‌سازی هستند. در دفتر فنی مهندسی آذر استیل، ما این نرده‌ها را با بالاترین استانداردهای روز دنیا و با استفاده از بهترین متریال طراحی و اجرا می‌کنیم. این محصول نه تنها یک حفاظ ایمنی است، بلکه نقش بسیار مهمی در زیبایی نما و داخلی ساختمان شما ایفا می‌کند.</p>
+                    <p><strong>نکته بسیار مهم در مورد متریال:</strong> در مجموعه آذر استیل، ما تنها از استیل‌های ضد زنگ با گریدهای <strong>304</strong> و <strong>201</strong> استفاده می‌کنیم. استیل 304 به دلیل داشتن نیکل بالا، مقاومت بسیار عالی در برابر زنگ‌زدگی، رطوبت و شرایط سخت جوی دارد و برای نماهای بیرونی، بالکن‌ها و مناطق مرطوب ایده‌آل است. استیل 201 نیز با قیمت مقرون‌به‌صرفه‌تر، گزینه‌ای بسیار مناسب و با دوام برای فضاهای داخلی و راه‌پله‌هاست که ما با افتخار آن را ارائه می‌دهیم.</p>
+                    <p>فرآیند اجرای این نرده‌ها در کارگاه ما شامل طراحی دقیق نقشه بر اساس فضای شما، برش تخصصی لوله‌ها، جوشکاری حرفه‌ای با دستگاه‌های آرگون (برای جلوگیری از تغییر رنگ و سوختگی استیل) و در نهایت پولیش و براق‌کاری است. ما با سابقه ۱۵ ساله و اجرای بیش از ۵۰۰ پروژه موفق، تضمین‌کننده کیفیت، ایمنی و زیبایی نرده استیل در محل شما هستیم.</p>
+                ` 
+            },
+            "2": { 
+                title: "نرده استاتیک مهندسی", 
+                images: ["N2", "N3", "N4"], 
+                description: `
+                    <p>نرده استاتیک یا ثابت، نوعی حفاظ فلزی بسیار مستحکم است که به صورت یکپارچه و بدون قطعات متحرک ساخته می‌شود. این نرده‌ها برخلاف نرده‌های تزئینی سبک، تمرکز اصلی‌شان بر روی ایجاد یک سد فیزیکی محکم و افزایش ضریب امنیت است و معمولاً در محوطه‌های بزرگ، حیاط ویلاها، استخرها و یا حصارکشی کارخانجات و مراکز صنعتی استفاده می‌شوند.</p>
+                    <p>دفتر فنی مهندسی آذر استیل در ساخت نرده‌های استاتیک، از پروفیل‌های قوی و با ضخامت بالا استفاده می‌کند تا بیشترین مقاومت را در برابر فشار و ضربه داشته باشند. <strong>همانند سایر محصولات استیل ما، در این بخش نیز از استیل‌های گرید 304 و 201 استفاده می‌شود</strong> تا علاوه بر استحکام بالای فیزیکی، در برابر خوردگی و زنگ‌زدگی نیز کاملاً ایمن باشند و سال‌ها بدون نیاز به تعمیر پابرجا بمانند.</p>
+                    <p>در صورت نیاز مشتری، این نرده‌ها می‌توانند با رنگ‌های کوره‌ای (الکترواستاتیک) در رنگ‌های متنوع پوشش‌دهی شوند تا هم زیبایی ظاهری پیدا کنند و هم طول عمر مفید آن‌ها افزایش یابد. تیم متخصص ما با دقت نظر در جوشکاری و نصب پیچ و مهره‌های فونداسیون، تضمین می‌کند که حفاظ نصب شده کاملاً صلب و ایمن باشد.</p>
+                ` 
+            },
+            "3": { 
+                title: "کرکره برقی", 
+                images: ["K2", "K3", "K4"], 
+                description: `
+                    <p>کرکره‌های برقی از پرکاربردترین و ضروری‌ترین سیستم‌های امنیتی و حفاظتی در دنیای امروز هستند. این سیستم‌ها به طور گسترده‌ای برای مغازه‌ها، فروشگاه‌ها، پارکینگ‌های عمومی و سردرهای تجاری مورد استفاده قرار می‌گیرند تا امنیت و آرامش را برای صاحبان مشاغل و ساکنین به ارمغان بیاورند و از اموال آن‌ها محافظت کنند.</p>
+                    <p>تیم آذر استیل متخصص در فروش، نصب و تعمیر انواع کرکره‌های برقی با موتورهای ایتالیایی و چینی درجه یک است. ما با توجه به ابعاد دهانه مغازه یا پارکینگ شما و همچنین میزان تردد روزانه، بهترین و قدرتمندترین موتور را به شما پیشنهاد می‌دهیم تا از فرسایش زودهنگام دستگاه جلوگیری شود و موتور در طول سالیان متمادی بدون مشکل کار کند.</p>
+                    <p>خدمات ما شامل نصب ریموت کنترل‌های با کیفیت و ضد سرقت، نصب سنسورهای ایمنی مادون قرمز (برای جلوگیری از برخورد تیغه با مانع و افراد)، سیستم‌های اضطراری (برای زمان قطعی برق) و همچنین تامین تیغه‌های آلومینیومی و گالوانیزه با ضخامت مناسب است. ما با اجرای دقیق و استفاده از قطعات استاندارد، طول عمر و امنیت بالایی را تضمین می‌کنیم.</p>
+                ` 
+            },
+            "4": { 
+                title: "شیشه سکوریت", 
+                images: ["Sh2", "Sh3", "Sh4"], 
+                description: `
+                    <p>شیشه سکوریت (Tempered Glass) که به عنوان شیشه ایمنی نیز شناخته می‌شود، طی یک فرآیند حرارتی بسیار دقیق و خاص در کوره‌های مخصوص تولید می‌شود. در این فرآیند، شیشه ابتدا تا دمای بسیار بالا (حدود ۶۰۰ درجه سانتی‌گراد) گرم شده و سپس با هوای سرد به سرعت سرد می‌شود؛ این تضاد دمایی باعث ایجاد تنش‌های سطحی شده و مقاومت شیشه را ۴ تا ۵ برابر بیشتر از شیشه‌های معمولی می‌کند.</p>
+                    <p>مهم‌ترین ویژگی ایمنی شیشه سکوریت این است که در صورت شکستن (حتی با ضربه شدید)، به هیچ وجه به قطعات بزرگ و برنده تبدیل نمی‌شود، بلکه به هزاران قطعه ریز و غیربرنده تبدیل شده و خطر آسیب‌های جدی و بریدگی را به حداقل می‌رساند. این ویژگی منحصر به فرد، آن را به گزینه‌ای ایده‌آل برای درب‌های شیشه‌ای فروشگاهی، پارتیشن‌های اداری و نرده‌های بالکن تبدیل کرده است.</p>
+                    <p>آذر استیل با بهره‌گیری از بهترین یراق‌آلات ضد زنگ و لولای‌های هیدرولیک، خدمات تامین، برش و نصب انواع شیشه‌های سکوریت را با ضخامت‌های استاندارد (معمولاً ۱۰ و ۱۲ میلی‌متر) به مشتریان ارائه می‌دهد. این محصولات علاوه بر ایجاد یک نمای فوق‌العاده مدرن، شیک و لوکس، ایمنی کامل را برای فضاهای مسکونی و تجاری شما به ارمغان می‌آورند.</p>
+                ` 
+            },
+            "5": { 
+                title: "درب و پنجره UPVC", 
+                images: ["D2", "D3", "D4"], 
+                description: `
+                    <p>درب و پنجره‌های ساخته شده از پروفیل‌های UPVC امروزه به عنوان یکی از بهترین، مدرن‌ترین و کارآمدترین گزینه‌ها برای عایق‌بندی ساختمان‌ها شناخته می‌شوند. این پروفیل‌ها دارای ساختار چند حفره‌ای (چند اتاقه) هستند که با به دام انداختن هوا در داخل خود، مانع از انتقال حرارت و صدا می‌شوند و به نوعی عایق طبیعی محسوب می‌شوند.</p>
+                    <p>استفاده از این درب و پنجره‌ها در ساختمان باعث کاهش چشمگیر مصرف انرژی (هزینه‌های گرمایش در زمستان و سرمایش در تابستان) شده و همچنین از ورود آلودگی صوتی محیط بیرون به داخل منزل جلوگیری می‌کند. آذر استیل با همکاری برترین برندهای تولید پروفیل، این محصولات را با شیشه‌های دوجداره استاندارد یا کم‌گسیل (Low-E) در صورت نیاز، به مشتریان عرضه می‌کند.</p>
+                    <p>یراق‌آلات به کار رفته در این پنجره‌ها از نوع بسیار با کیفیت، ضد زنگ و مقاوم هستند که سیستم‌های بازشوی تیلت و ترن (بازشو به داخل و چرخش برای تهویه) را برای راحتی هرچه بیشتر شما فراهم می‌کنند. نصب اصولی و دقیق این محصولات توسط تیم مجرب ما، تضمین‌کننده عدم نفوذ آب، باد و گرد و غبار به داخل ساختمان و همچنین کاهش شدید اتلاف انرژی است.</p>
+                ` 
+            }
+        };
+
+        // --- توابع مدیریت صفحات ---
+        function openProduct(id) {
+            const product = productsData[id];
+            if(!product) return;
+
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('product-view').style.display = 'block';
+            document.getElementById('floating-back-btn').style.display = 'block'; // نمایش دکمه شناور
+            
+            window.scrollTo(0, 0);
+            document.getElementById('p-title').innerText = product.title;
+            
+            const gallery = document.getElementById('p-gallery');
+            gallery.innerHTML = '';
+            product.images.forEach(imgSrc => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                // قرار دادن تصاویر کاربر در صفحه دوم
+                div.innerHTML = `<img src="${imgSrc}" alt="${product.title}">`;
+                gallery.appendChild(div);
+            });
+
+            document.getElementById('p-desc').innerHTML = product.description;
+            
+            // این خط باعث می‌شود دکمه فیزیکی بازگشت گوشی کار کند
+            history.pushState({page: 'product'}, "محصول", "#product-" + id);
+        }
+
+        function showHome() {
+            document.getElementById('product-view').style.display = 'none';
+            document.getElementById('home-view').style.display = 'block';
+            document.getElementById('floating-back-btn').style.display = 'none'; // مخفی کردن دکمه شناور
+            window.scrollTo(0, 0);
+        }
+
+        // مدیریت دکمه فیزیکی بازگشت در گوشی‌ها
+        window.onpopstate = function(event) {
+            if(document.getElementById('product-view').style.display === 'block') {
+                showHome();
+            }
+        };
+    </script>
+</body>
+</html>
