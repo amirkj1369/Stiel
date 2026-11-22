@@ -18,6 +18,67 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* ظرف اصلی */
+.flip-container {
+  perspective: 1000px;
+  width: 250px; /* عرض دلخواه */
+  height: 80px; /* ارتفاع دلخواه */
+  cursor: pointer;
+  display: inline-block; /* برای اینکه دقیقاً مثل یک دکمه در جای خود قرار بگیرد */
+}
+
+/* عنصری که می‌چرخد */
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* حرکت نرم‌تر */
+  transform-style: preserve-3d;
+}
+
+/* چرخش با هاور */
+.flip-container:hover .flipper {
+  transform: rotateY(180deg);
+}
+
+/* استایل مشترک */
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 50px; /* شکل کپسولی */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* سایه ملایم برای زیبایی */
+}
+
+/* --- استایل روی کارت (لوگو) --- */
+.front {
+  /* رنگ نارنجی دقیقاً مشابه لوگوی شما در عکس */
+  background-color: #eb7a25; 
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+/* --- استایل پشت کارت (متن) --- */
+.back {
+  /* رنگ پس‌زمینه تیره مشابه هدر بالای سایت شما */
+  background-color: #1e1e1e; 
+  /* رنگ متن به رنگ نارنجی لوگو برای هماهنگی بیشتر */
+  color: #eb7a25; 
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: bold;
+  transform: rotateY(180deg); /* از قبل چرخیده */
+  /* یک حاشیه نارنجی ظریف برای زیبایی بیشتر */
+  border: 2px solid #eb7a25; 
+  box-sizing: border-box; /* برای اینکه حاشیه از ابعاد کم نکند */
+}
 
         body {
             font-family: 'B Nazanin', 'Vazirmatn', Tahoma, sans-serif;
